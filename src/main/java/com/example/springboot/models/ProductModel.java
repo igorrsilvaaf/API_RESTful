@@ -1,23 +1,25 @@
 package com.example.springboot.models;
 
 import jakarta.persistence.*; // Importa as anotações do JPA (Java Persistence API)
+import org.springframework.hateoas.RepresentationModel;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Entity // Marca a classe como uma entidade JPA
-@Table(name = "products") // Mapeia a tabela do banco de dados associada a essa entidade
-public class ProductModel implements Serializable {
+@Entity
+@Table(name = "products")
+public class ProductModel extends RepresentationModel<ProductModel> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id // Marca o campo como a chave primária da tabela
-    @GeneratedValue(strategy = GenerationType.AUTO) // Gera o Id das tabelas de forma automática
-    private UUID idProduct; // Campo para o ID do produto (do tipo UUID)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idProduct;
 
-    private String name; // Campo para o nome do produto
+    private String name;
 
-    private BigDecimal value; // Campo para o valor do produto
+    private BigDecimal value;
 
     // Métodos getters e setters para os campos
 
